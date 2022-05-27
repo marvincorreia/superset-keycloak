@@ -1,0 +1,12 @@
+FROM node:16
+RUN npm install -g npm@7
+# NPM ci first, as to NOT invalidate previous steps except for when package.json changes
+RUN mkdir -p /app/superset-frontend
+RUN mkdir -p /app/superset/assets
+WORKDIR /app/superset-frontend
+COPY ./superset-frontend/package*.json ./
+RUN npm ci
+RUN mkdir -p /app/superset/static && chmod -R 777 /app/superset
+COPY ./superset-frontend ./
+ENTRYPOINT [ "npm"]
+CMD ["run", "dev"]
