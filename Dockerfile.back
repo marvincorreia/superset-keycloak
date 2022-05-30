@@ -1,5 +1,0 @@
-FROM apache/superset:latest-dev
-USER root
-WORKDIR /app
-RUN python3 -m pip install itsdangerous==2.0.1 flask-oidc flask_openid
-COPY docker /app/docker
