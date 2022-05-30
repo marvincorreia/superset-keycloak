@@ -1,4 +1,4 @@
-x-superset-image: &superset-image superset-keycloak:dev
+x-superset-image: &superset-image apache/superset:latest-dev
 x-superset-depends-on:
   &superset-depends-on
   - redis
@@ -6,14 +6,12 @@ x-superset-volumes:
   # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
   &superset-volumes
   - ./docker:/app/docker
-  - ./superset/static:/app/superset/static
-  - superset_home:/app/superset_home
+  - ./assets/images/superset-logo-horiz.png:/app/superset/static/assets/images/superset-logo-horiz.png
 
 x-superset-environment:
   &superset-environment
   - FLASK_ENV=development
   - SUPERSET_ENV=development
-  - SUPERSET_LOAD_EXAMPLES=yes
 
 version: "3.7"
 
@@ -45,19 +43,6 @@ services:
     volumes: *superset-volumes
     environment: *superset-environment
       
-
-  superset-frontend:
-    env_file: .env
-    image: superset-front
-    build:
-      context: .
-      dockerfile: Dockerfile.front
-    container_name: superset_frontend
-    user: "root"
-    volumes:
-      - ./superset/:/app/superset/
-      - ./superset-frontend/src:/app/superset-frontend/src
-
   superset-init:
     image: *superset-image
     build:
