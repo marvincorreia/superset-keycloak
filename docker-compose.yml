@@ -8,6 +8,7 @@ x-superset-volumes:
   - ./docker:/app/docker
   - ./assets/images/superset-logo-horiz.png:/app/superset/static/assets/images/superset-logo-horiz.png
   - ./templates/superset/public_welcome.html:/app/superset/templates/superset/public_welcome.html
+  - ./assets/images/favicon.png:/app/superset/static/assets/images/favicon.png
 
 x-superset-environment:
   &superset-environment
