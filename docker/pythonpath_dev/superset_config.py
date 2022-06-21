@@ -160,3 +160,4 @@ AUTH_USER_REGISTRATION_ROLE = 'Gamma'
 '''
 --------------------------------------------------------------
 '''
+APP_NAME = get_env_variable('APP_NAME')
