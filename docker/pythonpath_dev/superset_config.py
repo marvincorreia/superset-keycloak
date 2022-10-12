@@ -27,6 +27,7 @@ import os
 from typing import Optional
 from cachelib.file import FileSystemCache
 from celery.schedules import crontab
+import json
 
 logger = logging.getLogger()
 
@@ -161,3 +162,5 @@ AUTH_USER_REGISTRATION_ROLE = 'Gamma'
 --------------------------------------------------------------
 '''
 APP_NAME = get_env_variable('APP_NAME')
+# Jinja template processing option
+ENABLE_TEMPLATE_PROCESSING = json.loads(get_env_variable('ENABLE_TEMPLATE_PROCESSING', 'False').lower())
