@@ -11,6 +11,7 @@ x-superset-environment:
   &superset-environment
   - FLASK_ENV=production
   - SUPERSET_ENV=production
+  - FLASK_DEBUG=False
   
 version: "3.7"
 
